@@ -1,5 +1,8 @@
+import SidNavBar from '@/components/SidNavBar/SidNavBar'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Header from '@/components/Header/Header'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,8 +13,23 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
+		<html lang='en'>
+			<body className={inter.className}>
+				{
+					<div className='flex '>
+						<div className='w-[18%] h-[100vh] border  p-6'>
+							<SidNavBar />
+						</div>
+
+						<div className='h-[100vh] border   flex-1 '>
+              <div className='py-6 bg-white shadow-[2px_1px_3px_rgba(0,0,0,.1)]'>
+                <Header />
+              </div>
+							{children}
+						</div>
+					</div>
+				}
+			</body>
+		</html>
+  );
 }
