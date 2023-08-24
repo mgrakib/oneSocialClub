@@ -1,4 +1,6 @@
+/** @format */
 
+"use client";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import CommunitySettings from "../CommunitySettings/CommunitySettings";
@@ -6,10 +8,14 @@ import { RiMessage2Fill } from "react-icons/ri";
 import { MdOutlineShoppingBag, MdSpaceDashboard } from "react-icons/md";
 import { FiChevronRight, FiUsers } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
+import { useState } from "react";
+import Link from "next/link";
 
 const SidNavBar = () => {
-    return (
+	const [activeRoute, setActiveRoute] = useState("Feed");
+	return (
 		<div>
+			{/* logo and name  */}
 			<div className='flex items-center gap-[6px] w-full relative'>
 				<div>
 					<Image
@@ -27,32 +33,72 @@ const SidNavBar = () => {
 				</div>
 			</div>
 
+			{/* top router  */}
 			<div className=' my-6 text-[14px]'>
 				<ul>
-					<li className='py-[10px] px-[14px] cursor-pointer duration-500 hover:bg-[#F2F4F9] rounded-md flex items-center gap-3 text-[#5F6165]'>
-						<span>
-							<MdSpaceDashboard className='text-xl' />
-						</span>{" "}
-						Feed
-					</li>
-					<li className='py-[10px] px-[14px] cursor-pointer duration-500 bg-[#0A208B] rounded-md flex items-center gap-3 text-[#FFFFFF]'>
-						<span>
-							<RiMessage2Fill className='text-xl' />{" "}
-						</span>{" "}
-						Messages
-					</li>
-					<li className='py-[10px] px-[14px] cursor-pointer duration-500 hover:bg-[#F2F4F9] rounded-md flex items-center gap-3 text-[#5F6165]'>
-						<span>
-							<FiUsers className='text-xl' />{" "}
-						</span>{" "}
-						Members
-					</li>
-					<li className='py-[10px] px-[14px] cursor-pointer duration-500 hover:bg-[#F2F4F9] rounded-md flex items-center gap-3 text-[#5F6165]'>
-						<span>
-							<MdOutlineShoppingBag className='text-xl' />{" "}
-						</span>{" "}
-						Shop
-					</li>
+					<Link href={"/feed"}>
+						<li
+							onClick={() => setActiveRoute("Feed")}
+							className={`py-[10px] px-[14px] cursor-pointer duration-500  rounded-md flex items-center gap-3 ${
+								activeRoute === "Feed"
+									? "text-[#fff] bg-[#0A208B]"
+									: "text-[#5F6165] hover:bg-[#F2F4F9]"
+							} `}
+						>
+							<span>
+								<MdSpaceDashboard className='text-xl' />
+							</span>{" "}
+							Feed
+						</li>
+					</Link>
+					{/* messages  */}
+					<Link href={"/message"}>
+						<li
+							onClick={() => setActiveRoute("Messages")}
+							className={`py-[10px] px-[14px] cursor-pointer duration-500  rounded-md flex items-center gap-3 ${
+								activeRoute === "Messages"
+									? "text-[#fff] bg-[#0A208B]"
+									: "text-[#5F6165] hover:bg-[#F2F4F9]"
+							} `}
+						>
+							<span>
+								<RiMessage2Fill className='text-xl' />{" "}
+							</span>{" "}
+							Messages
+						</li>
+					</Link>
+					{/* members  */}
+					<Link href={"/members"}>
+						<li
+							onClick={() => setActiveRoute("Members")}
+							className={`py-[10px] px-[14px] cursor-pointer duration-500  rounded-md flex items-center gap-3 ${
+								activeRoute === "Members"
+									? "text-[#fff] bg-[#0A208B]"
+									: "text-[#5F6165] hover:bg-[#F2F4F9]"
+							} `}
+						>
+							<span>
+								<FiUsers className='text-xl' />{" "}
+							</span>{" "}
+							Members
+						</li>
+					</Link>
+					{/* Shop */}
+					<Link href={"/shop"}>
+						<li
+							onClick={() => setActiveRoute("Shop")}
+							className={`py-[10px] px-[14px] cursor-pointer duration-500  rounded-md flex items-center gap-3 ${
+								activeRoute === "Shop"
+									? "text-[#fff] bg-[#0A208B]"
+									: "text-[#5F6165] hover:bg-[#F2F4F9]"
+							} `}
+						>
+							<span>
+								<MdOutlineShoppingBag className='text-xl' />{" "}
+							</span>{" "}
+							Shop
+						</li>
+					</Link>
 				</ul>
 			</div>
 
@@ -80,7 +126,7 @@ const SidNavBar = () => {
 						</div>
 
 						{/* room  */}
-						<div className="flex flex-col gap-1">
+						<div className='flex flex-col gap-1'>
 							{/* room one  */}
 							<div className=' py-[5px]  cursor-pointer pl-3 duration-500 hover:bg-[#F2F4F9] rounded-md '>
 								<div className='pl-2 border-l-2 border-[#0A208B]  flex flex-col justify-between gap-1'>
